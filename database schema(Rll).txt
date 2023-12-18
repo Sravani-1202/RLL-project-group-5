@@ -1,0 +1,54 @@
+create database homefood;
+use homefood;
+select * from admin;
+insert into admin values("admin","password");
+
+cart
+CREATE TABLE `cart` (
+  `id` bigint NOT NULL,
+  `price` float NOT NULL,
+  `quantity` int NOT NULL,
+  `product_id` bigint DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK3d704slv66tw6x5hmbm6p2x3u` (`product_id`),
+  CONSTRAINT `FK3d704slv66tw6x5hmbm6p2x3u` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+customer 
+CREATE TABLE `customer` (
+  `email` varchar(255) NOT NULL,
+  `address` varchar(255) DEFAULT NULL,
+  `contact` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+
+product
+CREATE TABLE `product` (
+  `id` bigint NOT NULL,
+  `actual_price` float NOT NULL,
+  `avail` varchar(255) DEFAULT NULL,
+  `category` varchar(255) DEFAULT NULL,
+  `des` varchar(255) DEFAULT NULL,
+  `discount` float NOT NULL,
+  `imagepath` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
+  `price` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
+Purchase 
+CREATE TABLE `purchase` (
+  `id` bigint NOT NULL,
+  `productname` varchar(255) DEFAULT NULL,
+  `quantity` int NOT NULL,
+  `totalcost` float NOT NULL,
+  `transactionid` varchar(255) DEFAULT NULL,
+  `customer_email` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FKo7gdhk6inpwo1ktafs0q3wy2a` (`customer_email`),
+  CONSTRAINT `FKo7gdhk6inpwo1ktafs0q3wy2a` FOREIGN KEY (`customer_email`) REFERENCES `customer` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci
+
